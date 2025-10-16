@@ -9,6 +9,10 @@ const selecaoCores = document.querySelectorAll(
   '#selecao-cores li [name="opcao-cor"]'
 );
 
+const imagensMiniaturas = document.querySelectorAll(
+  "#selecionar-imagem li label img"
+);
+
 let NumCorSelecionada = 1;
 let numTamanhoSelecionado = 1;
 let numImagemSelecionada = 1;
@@ -35,7 +39,7 @@ selecaoCores.forEach((cor) => {
 });
 
 // pegando a imagem verificando o id das imagens pequenas
-// e guardando eu uma variavel para mudar o src da imagem
+// e guardando em uma variavel para mudar o src da imagem
 function atualizarImagemSelecionada() {
   // selecionar a opção marcada pegando apenas a primeira informação dentro do id
   const opcaoImagemSelecionada = document
@@ -45,7 +49,9 @@ function atualizarImagemSelecionada() {
   numImagemSelecionada = opcaoImagemSelecionada;
 
   //selecionar a imagem e modificar parte do seu src
-  imagemVisualizacao.src = `./imagens/opcoes-cores/imagens-azul-inverno/imagem-${numImagemSelecionada}.jpeg`;
+  imagemVisualizacao.src = `./imagens/opcoes-cores/imagens-${opcoesCores[
+    NumCorSelecionada
+  ].toLowerCase()}/imagem-${numImagemSelecionada}.jpeg`;
 }
 
 // pegando o input que está dentro da div e pegando o primeiro valor do id do input checkado
@@ -84,5 +90,10 @@ function atualizarCorSelecionada() {
   ].toLowerCase()}`;
 
   nomeCorSelecionada.textContent = `Cor - ${nomeCor}`;
-  imagemVisualizacao.src = `./imagens/opcoes-cores/imagens-${nomeCor.toLowerCase()}/imagem-1.jpeg`;
+  imagemVisualizacao.src = `./imagens/opcoes-cores/imagens-${nomeCor.toLowerCase()}/imagem-${numImagemSelecionada}.jpeg`;
+
+  //pegando as imagens e fazendo um looping por elas, mudando o src
+  imagensMiniaturas.forEach((miniatura, index) => {
+    miniatura.src = `./imagens/opcoes-cores/imagens-${nomeCor.toLowerCase()}/imagem-${index}.jpeg`;
+  });
 }
