@@ -5,11 +5,16 @@ const opcaoProduto = document.querySelectorAll(
   '#opcoes-tamanho [name="opcao-tamanho"]'
 );
 
+const nomeCorSelecionada = document.querySelector("#nome-cor-selecionada");
+
+
 const selecaoCores = document.querySelectorAll(
   '#selecao-cores li [name="opcao-cor"]'
 );
 
 let NumCorSelecionada = 1;
+let numTamanhoSelecionado = 1;
+let numImagemSelecionada = 1;
 
 const opcoesTamanho = ["41 mm", "45 mm"];
 const opcoesCores = [
@@ -40,7 +45,7 @@ function atualizarImagemSelecionada() {
     .querySelector('[name="opcao-imagem"]:checked')
     .id.charAt(0);
   // colocando a primeira string da posição zero que está no id e guardando em uma variavel
-  let numImagemSelecionada = opcaoImagemSelecionada;
+  numImagemSelecionada = opcaoImagemSelecionada;
 
   //selecionar a imagem e modificar parte do seu src
   imagemVisualizacao.src = `./imagens/opcoes-cores/imagens-azul-inverno/imagem-${numImagemSelecionada}.jpeg`;
@@ -54,10 +59,12 @@ function atualizarTamanho() {
     .querySelector('[name="opcao-tamanho"]:checked')
     .id.charAt(0);
 
-  let numTamanhoSelecionado = tamanho;
+  numTamanhoSelecionado = tamanho;
   let tamanhoCaixa = opcoesTamanho[numTamanhoSelecionado];
 
-  tituloProduto.textContent = `Pulseira loop esportiva azul-inverno para caixa de ${tamanhoCaixa}`;
+  tituloProduto.textContent = `Pulseira loop esportiva ${opcoesCores[
+    NumCorSelecionada
+  ].toLowerCase()} para caixa de ${tamanhoCaixa}`;
 
   if (tamanhoCaixa === "41 mm") {
     imagemVisualizacao.classList.add("caixa-pequena");
@@ -71,9 +78,13 @@ function atualizarCorSelecionada() {
     .querySelector('[name="opcao-cor"]:checked')
     .id.charAt(0);
 
-  let NumCorSelecionada = opcaoCorSelecionada;
+  NumCorSelecionada = opcaoCorSelecionada;
 
   const nomeCor = opcoesCores[NumCorSelecionada];
 
-  console.log(nomeCor);
+  tituloProduto.textContent = `Pulseira loop esportiva ${nomeCor.toLowerCase()} para caixa de ${opcoesTamanho[
+    numTamanhoSelecionado
+  ].toLowerCase()}`;
+
+  nomeCorSelecionada.textContent = `Cor - ${nomeCor}`;
 }
