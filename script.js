@@ -4,10 +4,7 @@ const tituloProduto = document.querySelector("h1");
 const opcaoProduto = document.querySelectorAll(
   '#opcoes-tamanho [name="opcao-tamanho"]'
 );
-
 const nomeCorSelecionada = document.querySelector("#nome-cor-selecionada");
-
-
 const selecaoCores = document.querySelectorAll(
   '#selecao-cores li [name="opcao-cor"]'
 );
@@ -87,4 +84,5 @@ function atualizarCorSelecionada() {
   ].toLowerCase()}`;
 
   nomeCorSelecionada.textContent = `Cor - ${nomeCor}`;
+  imagemVisualizacao.src = `./imagens/opcoes-cores/imagens-${nomeCor.toLowerCase()}/imagem-1.jpeg`;
 }
